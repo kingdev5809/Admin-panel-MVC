@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+<!DOCTYPE html>
 <html lang="en">
 <head class="">
     <meta charset="utf-8" />
@@ -58,22 +64,26 @@
                 <div class="z-50 hidden absolute top-[2.5rem] right-5  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                      id="user-dropdown">
                     <div class="px-4 py-3">
-                        <span class="block text-sm text-gray-900 dark:text-white">
-                            Bonnie Green
-                        </span>
-                        <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                            name@flowbite.com
-                        </span>
-                    </div>
+                        @if (user != null)
+                        {
+                            <span class="block text-sm text-gray-900 dark:text-white">
+                                @user.UserName
+                             </span>
+                             <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">
+                                    @user.Email
+                             </span>
+                          }
+                            
+                        </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
+                        @*<li>
+                                <a href="#"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                    Settings
+                                </a>
+                            </li>*@
                         <li>
-                            <a href="#"
-                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                Settings
-                            </a>
-                        </li>
-                        <li>
-                            <a  asp-controller="Account" asp-action="Logout"
+                            <a asp-controller="Account" asp-action="Logout"
                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                 Sign out
                             </a>
@@ -114,14 +124,14 @@
                     </a>
                 </li>
                 <li>
-                    <a  asp-controller="Homeworks" asp-action="Index"
+                    <a asp-controller="Homeworks" asp-action="Index"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="fas fa-tasks flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-[21px]"></i>
                         <span class="flex-1 ml-3 whitespace-nowrap">Homeworks</span>
                     </a>
                 </li>
                 <li>
-                    <a  asp-controller="Teachers" asp-action="Index"
+                    <a asp-controller="Teachers" asp-action="Index"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                              aria-hidden="true"
@@ -134,7 +144,7 @@
                     </a>
                 </li>
                 <li>
-                    <a  asp-controller="About" asp-action="Index"
+                    <a asp-controller="About" asp-action="Index"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="fa-solid fa-circle-info flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-[22px]"
                            aria-hidden="true"></i>
@@ -143,21 +153,21 @@
                 </li>
 
                 <li>
-                    <a  asp-controller="Result" asp-action="Index"
+                    <a asp-controller="Result" asp-action="Index"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="fa-solid fa-square-poll-vertical flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-[22px]"></i>
                         <span class="flex-1 ml-3 whitespace-nowrap">Result</span>
                     </a>
                 </li>
                 <li>
-                    <a  asp-controller="Comments" asp-action="Index"
+                    <a asp-controller="Comments" asp-action="Index"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="fa-solid fa-comment flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-[22px]"></i>
                         <span class="flex-1 ml-3 whitespace-nowrap">Comments</span>
                     </a>
                 </li>
                 <li>
-                    <a  asp-controller="Contact" asp-action="Index"
+                    <a asp-controller="Contact" asp-action="Index"
                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="fa-solid fa-address-book flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white text-[22px]"></i>
                         <span class="flex-1 ml-3 whitespace-nowrap">Contact</span>

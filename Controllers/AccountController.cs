@@ -63,6 +63,7 @@ namespace CrudMVCByKING.Controllers
            
         }
 
+ 
 
         [HttpGet]
         public IActionResult Register()
@@ -77,6 +78,7 @@ namespace CrudMVCByKING.Controllers
             if (!ModelState.IsValid) return View(registerDto);
 
             var user = await _userManager.FindByEmailAsync(registerDto.Email);
+            
             if (user != null)
             {
                 TempData["Error"] = "This email address is already in use";
@@ -98,16 +100,17 @@ namespace CrudMVCByKING.Controllers
                 TempData["Error"] = errorDescription;
                 return View(registerDto);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
+
         }
 
 
-          
+
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login", "Auth");
+            return RedirectToAction("Login", "Account");
         }
 
         //[HttpGet]
