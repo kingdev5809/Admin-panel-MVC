@@ -1,4 +1,4 @@
-﻿using CrudMVCByKING.Models;
+using CrudMVCByKING.Models;
 using CrudMVCByKING.Models.DTOs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -58,9 +58,7 @@ namespace CrudMVCByKING.Controllers
                         TempData["Error"] = "Wrong credentials. Please try again";
                         return View(model);
                     }
-
-                    return RedirectToAction("Index", "Home");            
-           
+                    return RedirectToAction("Index", "Home");                       
         }
 
  
