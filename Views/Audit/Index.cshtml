@@ -1,0 +1,71 @@
+﻿@model List<AuditTrailRecord>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="flex justify-start my-2">
+    <h1 class="text-[34px] ">Audits</h1>   
+</div>
+<div class=" overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    User Name   
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Entity Type
+                </th>
+                <th scope="col" class="px-6 py-3">
+                     Old Value
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    New  Value
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Time
+                </th>
+                @*<th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Actions</span>
+                </th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="px-6 py-4">
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td class="px-6 py-4">
+                        @Html.DisplayFor(modelItem => item.Action)
+                    </td>
+                    <td class="px-6 py-4">
+                        @Html.DisplayFor(modelItem => item.EntityType)
+                    </td>
+                    <td class="px-6 py-4">
+                        @Html.DisplayFor(modelItem => item.OldValues)
+                    </td>
+                    <td class="px-6 py-4">
+                        @Html.DisplayFor(modelItem => item.NewValues)
+                    </td>
+                    <td class="px-6 py-4">
+                        @Html.DisplayFor(modelItem => item.Timestamp)
+                    </td>
+
+                    @*<td class="px-6 py-4 text-right ">
+                        <div class="flex gap-2 justify-end align-center h-full">
+                            <a asp-action="Details" asp-route-id="@item.Id " class="font-medium text-green-600 dark:text-green-500 hover:underline">Detail</a>
+                        </div>
+                    </td>*@
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
